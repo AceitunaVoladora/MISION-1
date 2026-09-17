@@ -21,7 +21,7 @@ body{
 
 #grid{
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr); /* el 1fr es la fraccion del espacio, aqui son todas iguales pero si pusieramos 1fr 2fr 1fr la segunda columna seria el doble de las otras*/
     gap: 10px;
     width: 600px;
     padding-inline: 2rem;
