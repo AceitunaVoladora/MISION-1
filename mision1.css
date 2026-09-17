@@ -1,3 +1,52 @@
+body{
+    background-color: #293241;
+}
+
+@font-face {
+    font-family: 'FuenteTitulo';
+    src: url('fuentes/Chunky\ Funks.otf');
+    src: url('fuentes/Chunky\ Funks.ttf');
+}
+
+@font-face {
+    font-family: 'FuenteTexto';
+    src: url('fuentes/LEMONMILK-Regular.otf');
+}
+
+#juego{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#titulo{
+    color: #73A6AD;
+    font-family: 'FuenteTitulo', sans-serif;
+    font-size: 2rem;
+}
+
+#grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    width: 600px;
+    padding-inline: 2rem;
+    box-sizing: border-box; /* para que no cuente el padding en el width */
+}
+
 .caja{
-    background-color: rgb(76, 143, 215);
+    background-color: #3d5a80;
+    aspect-ratio: 1 / 1; /* mantiene la caja cuadrada sin fijar width y height */
+    border: 10px solid #2b3f5a;
+    border-radius: 10%;
+}
+
+#info{
+    color: #73A6AD;
+    font-family: 'FuenteTitulo', sans-serif;
+    font-size: 1.5rem;
+    padding: 2rem;
+}
+
+.caja:hover{
+    background-color: #EE6C4D;
 }
