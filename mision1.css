@@ -8,11 +8,6 @@ body{
     src: url('fuentes/Chunky\ Funks.ttf');
 }
 
-@font-face {
-    font-family: 'FuenteTexto';
-    src: url('fuentes/LEMONMILK-Regular.otf');
-}
-
 #juego{
     display: flex;
     flex-wrap: wrap;
