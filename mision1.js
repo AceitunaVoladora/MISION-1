@@ -9,6 +9,7 @@ let caja8 = document.getElementById("8");
 let caja9 = document.getElementById("9");
 
 let botonEmpezar = document.querySelector("#empezar");
+let modoOscuro = document.querySelector("#oscuro");
 
 let restantes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let sucesion = [];
@@ -30,6 +31,10 @@ function jugar(){
     });
 }
 
+//modo oscuro
+modoOscuro.addEventListener('click', () =>{
+    document.body.classList.toggle('modoOscuro');
+});
 
 
 botonEmpezar.addEventListener('click', () =>{
@@ -37,21 +42,13 @@ botonEmpezar.addEventListener('click', () =>{
         botonEmpezar.classList.add('pausa');
         botonEmpezar.textContent = 'Pausa';
         
+        //contador de 3 segundos?
+
         jugando = true;
         jugar();
-
     }else{
         botonEmpezar.classList.remove('pausa');
         botonEmpezar.textContent = 'Empezar';
         jugando = false;
     } 
 });
-
-function empezar(){
-    //contador 3 sec y empezar el juego (salga primera luz)
-    //que empezar cambie a un boton de pausa / finalizar
-}
-
-function contar(){
-    contador.innerHTML = ++cont;
-}
