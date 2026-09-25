@@ -1,6 +1,6 @@
-README
+# README
 
-IA: Claude
+## IA: Claude
 
 prompt: "como puedo hacer que una caja cambie de estilo en js (ya predeterminado en css como 'activo') despues de 2 segundos"
 
@@ -49,7 +49,7 @@ botones.forEach(boton => {
 En este caso su aplicacion fue...
 Debido a que nunca habia visto la función parseInt, inquirí acerca de su funcionamiento y proposito en el codigo. Aprendí que se utiliza para convertir un string en un entero, el id de cada boton es transformado a un número entero de base diez.
 
-AUTOPSIA
+## AUTOPSIA
 
 Codigo anterior:
 ya no lo uso pq no hace falta 
