@@ -1,26 +1,23 @@
 const botonEmpezar = document.querySelector("#empezar");
 const modoOscuro = document.querySelector("#oscuro");
+const cajas = document.querySelectorAll('.caja');
 
+const max = 9;
 let restantes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let sucesion = [];
 let jugando = false;
 let random = 0;
 let lengthRestantes = 9;
-const max = 9;
 let caja = 1;
 let contador = 0;
 
-const cajas = document.querySelectorAll('.caja');
-
 function jugar(){
     if (!jugando) return;
-
-    //que se encienda la sucesion anterior si hay
     const tiempoEncendido = 400;
     const tiempoIntervalo = 600;
-
     const tiempoSucesion = tiempoIntervalo * sucesion.length;
-
+    
+    //que se encienda la sucesion anterior si hay
     if(sucesion.length !== 0){
         for(let i = 0; i < sucesion.length; i++){
             const cajaSucesion = document.getElementById(sucesion[i]);

@@ -52,10 +52,11 @@ Debido a que nunca habia visto la función parseInt, inquirí acerca de su funci
 ## AUTOPSIA
 
 Codigo anterior:
-ya no lo uso pq no hace falta 
-
+En versiones anteriores el número random generaba el número de la caja en especifico y no su índice en el array. Esto implicaba que necesitara integrar una validación de que el número se encontrara dentro de los números restantes. Finalmente esto fue modificado porque esta alternativa era más complicada que buscar por índice dentro del array de restantes.
 
 ```javascript
+random = Math.floor(Math.random() * max) + 1;
+
 while(valido === false){
     if(random === restantes[i]){
         valido = true;
@@ -63,3 +64,4 @@ while(valido === false){
     i++;
 }
 ```
+
