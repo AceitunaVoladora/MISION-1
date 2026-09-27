@@ -8,7 +8,6 @@ let sucesion = [];
 let jugando = false;
 let random = 0;
 let lengthRestantes = 9;
-let caja = 1;
 let contador = 0;
 
 function jugar(){
@@ -34,10 +33,10 @@ function jugar(){
     
     //selecciona la nueva caja para la sucesion
     //random selecciona el indice de restantes
-    indiceRestantes = Math.floor(Math.random() * lengthRestantes); //floor redondea hacia abajo
+    const indiceRestantes = Math.floor(Math.random() * lengthRestantes); //floor redondea hacia abajo
     random = restantes[indiceRestantes];
 
-    //añadimos la nueva caja a sucesuin y la quitamis de la lista de restantes
+    //añadimos la nueva caja a sucesion y la quitamis de la lista de restantes
     sucesion[max - lengthRestantes] = random;
     restantes.splice(indiceRestantes, 1); //quita el primer número a partir del indice, osea el valor en el indice
     lengthRestantes--;
@@ -62,15 +61,15 @@ cajas.forEach(caja => {
 
         if(idCaja === sucesion[contador]){
             contador++;
-                
-            //se han ganado todas las rondas
-            if(contador === max){
-                //banner ganador
-                reiniciar();
-            }
 
             //se gana la ronda
             if(contador === sucesion.length){
+                //se han ganado todas las rondas
+                if(contador === max){
+                    //banner ganador
+                    reiniciar();
+                }
+
                 contador = 0;
                 jugar();                 
             }
@@ -105,8 +104,6 @@ botonEmpezar.addEventListener('click', () =>{
     if(botonEmpezar.textContent === 'Empezar'){
         botonEmpezar.classList.add('pausa');
         botonEmpezar.textContent = 'Reiniciar';
-        
-        //contador de 3 segundos?
 
         jugando = true;
         jugar();

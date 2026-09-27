@@ -52,7 +52,7 @@ Debido a que nunca habia visto la función parseInt, inquirí acerca de su funci
 ## AUTOPSIA
 
 Codigo anterior:
-En versiones anteriores el número random generaba el número de la caja en especifico y no su índice en el array. Esto implicaba que necesitara integrar una validación de que el número se encontrara dentro de los números restantes. Finalmente esto fue modificado porque esta alternativa era más complicada que buscar por índice dentro del array de restantes.
+En versiones anteriores el número aleatorio generaba el número de la caja en especifico y no su índice en el array. Esto implicaba que necesitara integrar una validación de que el número se encontrara dentro de los números restantes. Finalmente esto fue modificado porque esta alternativa era más complicada que buscar por índice dentro del array de restantes.
 
 ```javascript
 random = Math.floor(Math.random() * max) + 1;
@@ -64,4 +64,11 @@ while(valido === false){
     i++;
 }
 ```
+
+Siguiendo la misma linea del cambio del código anterior, una vez seleccionado el número aleatorio anteriormente utilizaba esta línea de código:
+
+```javascript
+restantes = restantes.filter(n => n !== random);
+```
+Finalmente esta fue cambiada por el 'splice' de ahora porque esta nueva función no busca por contenido sino por el índice del array lo cual encaja mucho mejor ahora en el cambio.
 
