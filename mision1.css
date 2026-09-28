@@ -10,6 +10,9 @@
     --pausaFondo: #F2A365;
     --pausaBorde: #FFB578;
     --pauseTexto: #F0F0F0;
+
+    --clicFondo: #8FB996;
+    --clicBorde: #79A681;
 }
 
 body.modoOscuro{ /*selector compuesto*/
@@ -24,6 +27,9 @@ body.modoOscuro{ /*selector compuesto*/
     --pausaFondo: #F2A365;
     --pausaBorde: #E8934F;
     --pauseTexto: #2A2A2A;
+
+    --clicFondo: #79A681;
+    --clicBorde: #8FB996;
 }
 
 body{
@@ -126,4 +132,9 @@ body{
     background-color: var(--seleccion1);
     border: 10px solid var(--bordeSeleccion);
     color: var(--texto1);
+}
+
+.caja.clic{
+    background-color: var(--clicFondo);
+    border: 10px solid var(--clicBorde);
 }

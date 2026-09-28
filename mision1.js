@@ -5,36 +5,52 @@ const cajas = document.querySelectorAll('.caja');
 const max = 9;
 const tiempoEncendido = 400;
 const tiempoIntervalo = 600;
+const tiempoEspera = 600;
+
 let restantes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let sucesion = [];
 let jugando = false;
 let random = 0;
 let lengthRestantes = 9;
 let contador = 0;
+let bloqueo = false;
+let infinito =  false;
 
 function jugar(){
     if (!jugando) return;
+    bloqueo = true;
     const tiempoSucesion = tiempoIntervalo * sucesion.length;
     
     //que se encienda la sucesion anterior si hay
     if(sucesion.length !== 0){
         for(let i = 0; i < sucesion.length; i++){
-            ilumina(sucesion[i], i * tiempoIntervalo);
+            ilumina(sucesion[i], tiempoEspera + i * tiempoIntervalo, 'activo', tiempoEncendido);
         }
     }
     
-    //selecciona la nueva caja para la sucesion
-    //random selecciona el indice de restantes
-    const indiceRestantes = Math.floor(Math.random() * lengthRestantes); //floor redondea hacia abajo
-    random = restantes[indiceRestantes];
+    if(!infinito){
+        //hasta 9 cajas
 
-    //añadimos la nueva caja a sucesion y la quitamis de la lista de restantes
-    sucesion[max - lengthRestantes] = random;
-    restantes.splice(indiceRestantes, 1); //quita el primer número a partir del indice, osea el valor en el indice
-    lengthRestantes--;
+        //selecciona la nueva caja para la sucesion
+        //random selecciona el indice de restantes
+        const indiceRestantes = Math.floor(Math.random() * lengthRestantes); //floor redondea hacia abajo
+        random = restantes[indiceRestantes];
+
+        //quitamos de la lista restante
+        restantes.splice(indiceRestantes, 1); //quita el primer número a partir del indice, osea el valor en el indice
+        lengthRestantes--;
+    }else{
+        random = Math.floor(Math.random() * max) + 1; 
+    }
+
+    sucesion.push(random);
 
     //ilumina la nueva caja
-    ilumina(random, tiempoSucesion);
+    ilumina(random, tiempoEspera + tiempoSucesion, 'activo', tiempoEncendido);
+
+    setTimeout(() =>{
+        bloqueo = false;
+    }, tiempoSucesion + tiempoEncendido + tiempoEspera);
 }
 
 //modo oscuro alterno con tecla
@@ -48,30 +64,32 @@ document.addEventListener('keydown', (e) => { //e es funcion evento
 //el usuario cliquea la sucesion
 cajas.forEach(caja => {
     caja.addEventListener('click', () =>{
-        if (!jugando) return;
+        if (!jugando || bloqueo) return;
 
         const idCaja = parseInt(caja.id, 10);
-
+        ilumina(idCaja, 0, 'clic', 200);
+        
         if(idCaja === sucesion[contador]){
             contador++;
 
             //se gana la ronda
             if(contador === sucesion.length){
-                //se han ganado todas las rondas
-                if(contador === max){
-                    //banner ganador
-                    ganar();
-                    reiniciar();
-                }
-
                 contador = 0;
-                jugar();                 
-            }
 
+                //se han ganado todas las rondas
+                if(sucesion.length === max && !infinito){
+                    //banner ganador
+                    infinito = true;
+                    bloqueo = true;
+
+                    ganar();
+                }else{
+                    jugar(); 
+                }                  
+            }
         }else{
             //el usuario se ha equivocado
             //banner perdedor
-            contador = 0;
             reiniciar();
         }
     });   
@@ -91,16 +109,20 @@ function ganar(){
             }, tiempoEncendido);
         }, i * tiempoIntervalo); 
     }
+
+    setTimeout(() =>{
+        jugar();
+    }, parpadeo * tiempoEspera);
 }
 
-function ilumina(caja, tiempo){
+function ilumina(caja, tiempo, clase, duracion){
     setTimeout(() => {
         const cajaNueva = cajas[caja - 1];
-        cajaNueva.classList.add('activo');
+        cajaNueva.classList.add(clase);
                 
         setTimeout(() => {
-            cajaNueva.classList.remove('activo');
-        }, tiempoEncendido);
+            cajaNueva.classList.remove(clase);
+        }, duracion);
     }, tiempo);   
 }
 
@@ -113,6 +135,8 @@ function reiniciar(){
     sucesion = [];
     lengthRestantes = 9;
     contador = 0;
+    bloqueo = false;
+    infinito = false;
 }
 
 //modo oscuro
