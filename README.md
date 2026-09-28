@@ -46,13 +46,13 @@ botones.forEach(boton => {
 });
 ```
 
-En este caso su aplicacion fue...
+Su aplicación dentro de mi código ha sido casi idéntico a excepción de los condicionales que hacen posible el modo infinito.
 Debido a que nunca habia visto la función parseInt, inquirí acerca de su funcionamiento y proposito en el codigo. Aprendí que se utiliza para convertir un string en un entero, el id de cada boton es transformado a un número entero de base diez.
 
 ## AUTOPSIA
 
 Codigo anterior:
-En versiones anteriores el número aleatorio generaba el número de la caja en especifico y no su índice en el array. Esto implicaba que necesitara integrar una validación de que el número se encontrara dentro de los números restantes. Finalmente esto fue modificado porque esta alternativa era más complicada que buscar por índice dentro del array de restantes.
+En versiones anteriores el número aleatorio generaba el número de la caja en especifico y no su índice en el array. Esto implicaba que necesitara integrar una validación de que el número se encontrara dentro de los números restantes. Finalmente esto fue modificado porque esta alternativa era más complicada que buscar por índice dentro del array de restantes. Este cambio se tuvo en cuenta a la hora de hacer el juego para que se iluminaran las 9 casillas exclusivamente. Con el añadido del modo infinito se ha rescatado esta función una vez el jugador haya superado la fase inicial. 
 
 ```javascript
 random = Math.floor(Math.random() * max) + 1;
