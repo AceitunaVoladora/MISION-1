@@ -1,6 +1,6 @@
 # README
 
-## IA: Claude
+## Declaración de uso de IA (Claude)
 
 prompt: "como puedo hacer que una caja cambie de estilo en js (ya predeterminado en css como 'activo') despues de 2 segundos"
 

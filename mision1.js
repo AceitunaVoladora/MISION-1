@@ -3,6 +3,8 @@ const modoOscuro = document.querySelector("#oscuro");
 const cajas = document.querySelectorAll('.caja');
 
 const max = 9;
+const tiempoEncendido = 400;
+const tiempoIntervalo = 600;
 let restantes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let sucesion = [];
 let jugando = false;
@@ -12,22 +14,12 @@ let contador = 0;
 
 function jugar(){
     if (!jugando) return;
-    const tiempoEncendido = 400;
-    const tiempoIntervalo = 600;
     const tiempoSucesion = tiempoIntervalo * sucesion.length;
     
     //que se encienda la sucesion anterior si hay
     if(sucesion.length !== 0){
         for(let i = 0; i < sucesion.length; i++){
-            const cajaSucesion = document.getElementById(sucesion[i]);
-
-            setTimeout(() => {
-                cajaSucesion.classList.add('activo');
-                    
-                setTimeout(() => {
-                    cajaSucesion.classList.remove('activo');
-                }, tiempoEncendido);
-            }, i * tiempoIntervalo);
+            ilumina(sucesion[i], i * tiempoIntervalo);
         }
     }
     
@@ -42,15 +34,16 @@ function jugar(){
     lengthRestantes--;
 
     //ilumina la nueva caja
-    setTimeout(() => {
-        const cajaNueva = document.getElementById(random);
-        cajaNueva.classList.add('activo');
-                
-        setTimeout(() => {
-            cajaNueva.classList.remove('activo');
-        }, tiempoEncendido);
-    }, tiempoSucesion);
+    ilumina(random, tiempoSucesion);
 }
+
+//modo oscuro alterno con tecla
+document.addEventListener('keydown', (e) => { //e es funcion evento
+    if(e.key.toLowerCase() === 'o' && !e.repeat){ //!e.repeat evita que alterne entre modos si se mantiene pulsada
+        document.body.classList.toggle('modoOscuro');
+    }
+})
+
 
 //el usuario cliquea la sucesion
 cajas.forEach(caja => {
@@ -67,6 +60,7 @@ cajas.forEach(caja => {
                 //se han ganado todas las rondas
                 if(contador === max){
                     //banner ganador
+                    ganar();
                     reiniciar();
                 }
 
@@ -82,6 +76,33 @@ cajas.forEach(caja => {
         }
     });   
 });
+
+function ganar(){
+    const parpadeo = 3;
+
+    for(let i = 0; i < parpadeo; i++){
+        setTimeout(() => {
+            cajas.forEach(caja =>
+                caja.classList.add('activo')
+            );
+                    
+            setTimeout(() => {
+                cajas.forEach(caja => caja.classList.remove('activo'));
+            }, tiempoEncendido);
+        }, i * tiempoIntervalo); 
+    }
+}
+
+function ilumina(caja, tiempo){
+    setTimeout(() => {
+        const cajaNueva = cajas[caja - 1];
+        cajaNueva.classList.add('activo');
+                
+        setTimeout(() => {
+            cajaNueva.classList.remove('activo');
+        }, tiempoEncendido);
+    }, tiempo);   
+}
 
 function reiniciar(){
     botonEmpezar.classList.remove('pausa');
