@@ -9,10 +9,13 @@
 
     --pausaFondo: #F2A365;
     --pausaBorde: #FFB578;
-    --pauseTexto: #F0F0F0;
+    --pauseTexto: #020202;
 
     --clicFondo: #8FB996;
     --clicBorde: #79A681;
+    
+    --fondoTop: #F2A365;
+    --fondoRanking: #ffb578;
 }
 
 body.modoOscuro{ /*selector compuesto*/
@@ -30,6 +33,9 @@ body.modoOscuro{ /*selector compuesto*/
 
     --clicFondo: #79A681;
     --clicBorde: #8FB996;
+
+    --fondoTop: #ffb578;
+    --fondoRanking: #F2A365;
 }
 
 body{
@@ -45,6 +51,7 @@ body{
 #juego{
     display: flex;
     flex-wrap: wrap;
+    align-items: flex-start;
 }
 
 #titulo{
@@ -77,6 +84,11 @@ body{
     align-items: flex-start;
     gap: 1rem;
     padding-inline: 2rem;
+
+    flex: 1; /*ocupa el hueco al lado del grid*/
+    min-width: 300px;
+    max-width: 500px;
+    box-sizing: border-box;
 }
 
 #panelBotones{
@@ -137,4 +149,48 @@ body{
 .caja.clic{
     background-color: var(--clicFondo);
     border: 10px solid var(--clicBorde);
+}
+
+#top{
+    background-color: var(--fondoTop);
+    padding: 1rem;
+    padding-inline: 2rem;
+
+    border: 10px solid var(--fondoTop   );
+    border-radius: 10%;
+}
+
+#cajaRanking{
+    background-color: var(--fondoRanking);
+    padding: 1rem;
+
+    border: 10px solid var(--fondoRanking);
+    border-radius: 10%;
+}
+
+#nombre{
+    color: var(--texto1);
+    font-family: 'FuenteTitulo', sans-serif;
+    font-size: 1.5rem;
+
+    border: 10px solid var(--fondoRanking);
+    border-radius: 10%;
+}
+
+#mensaje{
+    color: var(--texto1);
+    font-family: 'FuenteTitulo', sans-serif;
+    font-size: 1.5rem;
+}
+
+#tituloRanking{
+    color: var(--texto1);
+    font-family: 'FuenteTitulo', sans-serif;
+    font-size: 2rem;
+}
+
+#ranking{
+    color: var(--texto1);
+    font-family: 'FuenteTitulo', sans-serif;
+    font-size: 1.5rem;
 }

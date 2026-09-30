@@ -1,6 +1,8 @@
-# README
+# Simon Dice
 
-## DECLARACIÓN DE USO DE LA IA (Claude)
+## Uso de IA 
+
+He usado Claude como apoyo durante la misión.
 
 Prompt: "como puedo hacer que una caja cambie de estilo en js (ya predeterminado en css como 'activo') despues de 2 segundos"
 
@@ -48,7 +50,7 @@ botones.forEach(boton => {
 Su aplicación dentro de mi código ha sido casi idéntico a excepción de los condicionales que hacen posible el modo infinito.
 Debido a que nunca había visto la función parseInt, inquirí acerca de su funcionamiento y propósito en el código. Aprendí que se utiliza para convertir un string en un entero, el id de cada botón es transformado a un número entero de base diez.
 
-## AUTOPSIA
+## Autopsia
 
 Código anterior:
 En versiones anteriores el número aleatorio generaba el número de la caja en específico y no su índice en el array. Esto implicaba que necesitara integrar una validación de que el número se encontrara dentro de los números restantes. Finalmente esto fue modificado porque esta alternativa era más complicada que buscar por índice dentro del array de restantes. 

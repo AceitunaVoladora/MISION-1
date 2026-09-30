@@ -1,11 +1,15 @@
 const botonEmpezar = document.querySelector("#empezar");
 const modoOscuro = document.querySelector("#oscuro");
 const cajas = document.querySelectorAll('.caja');
+const inputNombre = document.querySelector("#nombre");
+const mensaje = document.querySelector("#mensaje");
+const listaRanking = document.querySelector("#ranking");
 
 const max = 9;
 const tiempoEncendido = 400;
 const tiempoIntervalo = 600;
 const tiempoEspera = 600;
+const maxRanking = 10;
 
 let restantes = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 let sucesion = [];
@@ -15,6 +19,7 @@ let lengthRestantes = 9;
 let contador = 0;
 let bloqueo = false;
 let infinito =  false;
+let ranking = [];
 
 function jugar(){
     if (!jugando) return;
@@ -78,7 +83,6 @@ cajas.forEach(caja => {
 
                 //se han ganado todas las rondas
                 if(sucesion.length === max && !infinito){
-                    //banner ganador
                     infinito = true;
                     bloqueo = true;
 
@@ -89,11 +93,40 @@ cajas.forEach(caja => {
             }
         }else{
             //el usuario se ha equivocado
-            //banner perdedor
+            const nombre = inputNombre.value.trim() || 'Jugador';
+            const puntos = sucesion.length - 1;
+
+            mensaje.textContent = `${nombre}, has llegado a la ronda: ${puntos}`;
+            guardarPuntuacion(nombre, puntos);
+            mostrarRanking();
+
             reiniciar();
         }
     });   
 });
+
+function guardarPuntuacion(nombre, puntos){
+    if(puntos <= 0) return;
+    
+    ranking.push({nombre: nombre, puntos: puntos});
+    ranking.sort((a, b) => b.puntos - a.puntos);
+    ranking = ranking.slice(0, maxRanking);
+}
+
+function mostrarRanking(){
+    listaRanking.innerHTML = '';
+
+    if(ranking.length === 0){
+        listaRanking.textContent = 'Aun no hay puntuaciones';
+        return;
+    }
+
+    ranking.forEach(entrada =>{
+        const elementoLista = document.createElement('li');
+        elementoLista.textContent = `${entrada.nombre} - ${entrada.puntos} rondas`;
+        listaRanking.appendChild(elementoLista);
+    })
+}
 
 function ganar(){
     const parpadeo = 3;
@@ -156,3 +189,5 @@ botonEmpezar.addEventListener('click', () =>{
         reiniciar();
     } 
 });
+
+mostrarRanking();
