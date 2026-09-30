@@ -114,7 +114,7 @@ function guardarPuntuacion(nombre, puntos){
 }
 
 function mostrarRanking(){
-    listaRanking.innerHTML = '';
+    listaRanking.textContent = '';
 
     if(ranking.length === 0){
         listaRanking.textContent = 'Aun no hay puntuaciones';
